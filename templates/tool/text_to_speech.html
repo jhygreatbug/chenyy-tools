@@ -1,9 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>在线语音合成</title>
-	<meta charset="utf-8">
-	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<title>在线语音合成</title>
+<meta charset="utf-8">
+<style type="text/css">
+.download-wrap {
+	visibility: none;
+	position: fixed;
+	top: -100px;
+	left: -100px;
+}
+</style>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 </head>
 <body>
 <label>
@@ -11,15 +19,19 @@
 	<textarea id="source_text" name="source_text"></textarea>
 </label>
 <button id="generate_btn">生成</button>
+<a id="download_wrap" class="download-wrap" href="javascript:void(0)" download="a.wav">下载</a>
 <script>
+	var $download_wrap = document.getElementById('download_wrap');
+	var media_url = 'http://chenyy.moe/media/';
 	$('#generate_btn').on('click', function () {
 		$.ajax({
-			url: './tts',
+			url: './tts/',
 			data: {
 				text: $('#source_text').val(),
 			},
 			success: function (req) {
-				alert(JSON.stringify(req));
+				$download_wrap.href = media_url + req.src;
+				$download_wrap.click();	
 			},
 		});
 	});
