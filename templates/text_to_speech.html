@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>在线语音合成</title>
+	<meta charset="utf-8">
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+</head>
+<body>
+<label>
+	输入源文本：
+	<textarea id="source_text" name="source_text"></textarea>
+</label>
+<button id="generate_btn">生成</button>
+<script>
+	$('#generate_btn').on('click', function () {
+		$.ajax({
+			url: './tts',
+			data: {
+				text: $('#source_text').val(),
+			},
+			success: function (req) {
+				alert(JSON.stringify(req));
+			},
+		});
+	});
+</script>
+</body>
+</html>
