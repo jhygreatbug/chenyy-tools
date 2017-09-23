@@ -7,7 +7,7 @@ from django.http import JsonResponse, HttpResponse
 # Create your views here.
 
 def view(request):
-	return render_to_response('text_to_speech.html')
+	return render_to_response('tool/text_to_speech.html')
 
 def tts(request):
 	text = '';

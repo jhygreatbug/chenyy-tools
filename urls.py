@@ -15,9 +15,11 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
+from index import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^$', views.view),
     url(r'^tts/', include('text_to_speech.urls')),
     url(r'^generate_url/', include('generate_url.urls')),
 ]
