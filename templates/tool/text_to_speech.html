@@ -31,6 +31,7 @@
 			},
 			success: function (req) {
 				$download_wrap.href = media_url + req.src;
+				$download_wrap.download = req.src;
 				$download_wrap.click();	
 			},
 		});
