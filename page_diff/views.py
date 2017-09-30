@@ -8,12 +8,12 @@ from selenium import webdriver
 
 import time
 
-def view(request):
+def simple_diff_view(request):
 	c = {}
 	c.update(csrf(request))
-	return render_to_response('page_diff.html', c)
+	return render_to_response('page_diff/simple.html', c)
 
-def diffView(request):
+def simple_diff(request):
 	try:
 		url_l = request.POST['url_l']
 		url_r = request.POST['url_r']
@@ -41,3 +41,5 @@ def diffView(request):
 		'path_l': path_l,
 		'path_r': path_r,
 		})
+
+def 
