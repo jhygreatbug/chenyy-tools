@@ -7,4 +7,4 @@ from django.http import JsonResponse, HttpResponse
 # Create your views here.
 
 def view(request):
-	return render_to_response('tool/generate_url.html')
+	return render_to_response('generate_url.html')

@@ -1,5 +1,6 @@
 *.sqlite3
 sftp-config.json
+msc/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

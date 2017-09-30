@@ -20,6 +20,7 @@ from index import views
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', views.view),
-    url(r'^tts/', include('text_to_speech.urls')),
     url(r'^generate_url/', include('generate_url.urls')),
+    url(r'^page_diff/', include('page_diff.urls')),
+    url(r'^tts/', include('text_to_speech.urls')),
 ]

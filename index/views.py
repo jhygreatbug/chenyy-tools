@@ -6,4 +6,4 @@ from django.shortcuts import render_to_response
 # Create your views here.
 
 def view(request):
-	return render_to_response('tool/index.html')
+	return render_to_response('index.html')

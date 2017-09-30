@@ -73,7 +73,7 @@ def text_to_speech(text, filename):
 	return 0
 
 def view(request):
-	return render_to_response('tool/text_to_speech.html')
+	return render_to_response('text_to_speech.html')
 
 def tts(request):
 
