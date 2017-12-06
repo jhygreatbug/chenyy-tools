@@ -4,45 +4,45 @@
 <title>生成url</title>
 <meta charset="utf-8">
 <style type="text/css">
-	textarea {
-		width: 500px;
-		height: 300px;
-	}
+  textarea {
+    width: 500px;
+    height: 300px;
+  }
 </style>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 </head>
 <body>
 <p>
-	<label>
-		url模板：
-		<textarea id="url_tmp" name="url"></textarea>
-	</label>
-	*例：https://www.google.com/search?q=${0}
+  <label>
+    url模板：
+    <textarea id="url_tmp" name="url"></textarea>
+  </label>
+  *例：https://www.google.com/search?q=${0}
 </p>
 <p>
-	<label>
-		数据：
-		<textarea id="source_data" name="data"></textarea>
-	</label>
-	*换行符分隔
+  <label>
+    数据：
+    <textarea id="source_data" name="data"></textarea>
+  </label>
+  *换行符分隔
 </p>
 <p>
-	<button id="generate_btn">生成</button>
+  <button id="generate_btn">生成</button>
 </p>
 <p>
-	<textarea id="result" name="data"></textarea>
+  <textarea id="result" name="data"></textarea>
 </p>
 <script>
-	$('#generate_btn').on('click', function () {
-		var urlTmp = $('#url_tmp').val().trim();
-		var data = $('#source_data').val().trim();
-		var dataList = data.split('\n');
-		var resultStr = '';
-		dataList.forEach(function (item) {
-			resultStr += urlTmp.replace('${0}', encodeURIComponent(item)) + '\n';
-		});
-		$('#result').val(resultStr);
-	});
+  $('#generate_btn').on('click', function () {
+    var urlTmp = $('#url_tmp').val().trim();
+    var data = $('#source_data').val().trim();
+    var dataList = data.split('\n');
+    var resultStr = '';
+    dataList.forEach(function (item) {
+      resultStr += urlTmp.replace('${0}', encodeURIComponent(item)) + '\n';
+    });
+    $('#result').val(resultStr);
+  });
 </script>
 </body>
 </html>
