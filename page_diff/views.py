@@ -24,10 +24,10 @@ def simple_diff(request):
 	except Exception as e:
 		return HttpResponse(status = 403)
 
-	driver = webdriver.PhantomJS()
+	driver = webdriver.PhantomJS(service_args=['--disk-cache=yes'])
 	driver.set_window_size(1200, 900)
 	result = False
-	print time.time() - start_time
+	print(str(time.time() - start_time))
 
 	driver.get(url_l)
 	file_name_l = '%d.png' % int(time.time())
@@ -35,7 +35,7 @@ def simple_diff(request):
 	result = driver.save_screenshot(path_l)
 	if result != True:
 		raise IOError('保存img_l失败！')
-	print time.time() - start_time
+	print(str(time.time() - start_time))
 
 	driver.get(url_r)
 	file_name_r = '%d.png' % int(time.time())
@@ -43,11 +43,11 @@ def simple_diff(request):
 	result = driver.save_screenshot(path_r)
 	if result != True:
 		raise IOError('保存img_r失败！')
-	print time.time() - start_time
+	print(str(time.time() - start_time))
 
 	img_l = Image.open(path_l)
 	img_r = Image.open(path_r)
-	print time.time() - start_time
+	print(str(time.time() - start_time))
 
 	if img_l.height > img_r.height:
 		size = img_l.size
@@ -55,11 +55,13 @@ def simple_diff(request):
 	else:
 		size = img_r.size
 		img_l = img_l.crop((0, 0, size[0], size[1]))
+	img_l = img_l.crop((40,182,580,662))
+	img_r = img_r.crop((40,182,580,662))
 	img_m = diff(img_l, img_r)
 	file_name_m = '%d.png' % int(time.time())
 	path_m = '/var/www/media/%s' % file_name_m
 	img_m.save(path_m)
-	print time.time() - start_time
+	print(str(time.time() - start_time))
 
 	driver.quit()
 

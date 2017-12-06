@@ -29,17 +29,17 @@ def saveWave(raw_data, _tmpFile = 'test.wav'):
 	return _tmpFile
 
 def text_to_speech(text, filename):
-	text = b'测试文本'
+	text = '测试文本'
 	result_c = ctypes.c_int()
 	result = 0
 
 	session = msc.QTTSSessionBegin(TTS_SESSION_BEGIN_PARAMS, ctypes.byref(result_c))
-	print session
+	print(session)
 	if result_c.value != MSP_SUCCESS:
 		return '%d: QTTSSessionBegin failed' % result_c.value
 
 	result = msc.QTTSTextPut(session, text, len(text), None)
-	print text
+	print(text)
 	if result != MSP_SUCCESS:
 		msc.QTTSSessionEnd(session, 'TextPutError');
 		return '%d: QTTSTextPut failed' % result
@@ -49,8 +49,8 @@ def text_to_speech(text, filename):
 	f = BytesIO()
 	while True:
 		p = msc.QTTSAudioGet(session, ctypes.byref(audio_len), ctypes.byref(synth_status), ctypes.byref(result_c))
-		print p
-		print audio_len.value
+		print(p)
+		print(audio_len.value)
 
 		if result_c.value != MSP_SUCCESS:
 			f.close()
